@@ -14,6 +14,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class StandardNode<T> implements Node<T> {
-    @Setter @Getter @NonNull private T value;
-    @Builder.Default @Setter @Getter private Node<T> next = null;
+    @Setter
+    @Getter
+    @NonNull
+    private T value;
+    @Builder.Default
+    @Setter
+    @Getter
+    private Node<T> next = null;
 }
