@@ -5,21 +5,16 @@ package com.project.node;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
+
+@Data
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class StandardNode<T> implements Node<T> {
-    @Setter
-    @Getter
-    @NonNull
-    private T value;
-    @Builder.Default
-    @Setter
-    @Getter
-    private Node<T> next = null;
+    @NonNull private T value;
+    @Builder.Default private Node<T> next = null;
 }
