@@ -1,0 +1,47 @@
+{
+    "id":"",
+    "version":"",
+    "input": {
+        "step1": "numbers",
+        "step2": "number2"
+    },
+    "variables": {
+
+    },
+    "steps":[
+        {
+            "id":"step1.1",
+            "operation": "com.project.math.GenerateNumber",
+            "type": "Operation",
+            "next":{
+                "step2": "number3"
+            }
+        },
+        {
+            "id":"step1.2",
+            "operation": "com.project.math.Maximum",
+            "type": "Operation",
+            "next":{
+                "step2": "number1"
+            }
+        },
+        {
+            "id":"step2",
+            "operation": "com.project.math.Sum",
+            "type": "Operation",
+            "next":{
+                "step3": "number"
+            }
+        },
+        {
+            "id":"step3",
+            "operation": "com.project.math.Double",
+            "type": "Operation",
+            "next":{
+                "step3": "number"
+            },
+            "isFinal": "true"
+        }
+    ]
+
+}

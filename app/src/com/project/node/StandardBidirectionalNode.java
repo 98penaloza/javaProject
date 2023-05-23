@@ -5,13 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-
-@Data // getters and setters
-@Builder 
+@Data
+@SuperBuilder
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class StandardNode<T> implements Node<T> {
+public class StandardBidirectionalNode<T> implements BidirectionalNode<T>{
     @NonNull private T value;
-    @Builder.Default private Node<T> next = null;
+    @Builder.Default
+    private Node<T> next = null;
+    @Builder.Default
+    private Node<T> prev = null;
 }
