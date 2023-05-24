@@ -40,4 +40,11 @@ public class StandardLinkedList<T> implements LinkedList<T> {
         }
         return null;
     }
+
+    @Override
+    public T getLength() {
+        // Use decorator for getter and rename internal attribute to track size
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getLength'");
+    }
 }
