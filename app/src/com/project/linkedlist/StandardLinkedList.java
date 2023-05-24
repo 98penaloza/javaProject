@@ -32,10 +32,10 @@ public class StandardLinkedList<T> implements LinkedList<T> {
     }
 
     public T get(int indx) throws Exception {
-        if (indx >= size){
+        if (indx >= size) {
             throw new Exception("Index out of bound");
         }
-        for(int i=0 ; i <= indx; i++){
+        for (int i = 0; i <= indx; i++) {
             // implement
         }
         return null;

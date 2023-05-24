@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 
 public class StandardNodeTest {
-    static Node node1;
-    static Node node2;
-    static Node node3;
-    static Node node4;
+    static Node<Object> node1;
+    static Node<Object> node2;
+    static Node<Object> node3;
+    static Node<Object> node4;
 
     @BeforeEach
     void setup() {
