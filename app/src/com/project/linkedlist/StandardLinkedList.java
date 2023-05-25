@@ -3,48 +3,85 @@ package com.project.linkedlist;
 import com.project.node.Node;
 import com.project.node.StandardNode;
 
-public class StandardLinkedList<T> implements LinkedList<T> {
+import lombok.Getter;
+
+public class StandardLinkedList<T> implements LLinkedList<T> {
 
     private Node<T> head = null;
-    private int size = 0;
 
-    StandardLinkedList() {
+    @Getter
+    private int length = 0;
+
+    public StandardLinkedList() {
         head = null;
     }
 
     public void add(T value) {
         Node<T> newNode = new StandardNode<>(value);
-        if (head != null) {
+        if (head == null) {
             head = newNode;
-            size = 1;
+            length = 1;
         } else {
-            size += 1;
-            // implement
+            // current node
+            Node<T> current = head;
 
+            // go through all of em
+            while (current.getNext() != null) {
+                current = current.getNext();
+            }
+            
+            // set next node
+            current.setNext(newNode);
+            length += 1;
         }
     }
 
-    public void remove(int indx) {
+    public void remove(int indx) throws Exception {
         // head-indx0 -> n1-indx1 -> n2-indx2 -> ...
         // after remove indx1
         // // head-indx0 -> n2-indx1 -> ...
-        size -= 1;
+        if (indx > length) {
+            throw new Exception("Index out of bound.");
+        } else if (indx == 0) {
+            head = head.getNext();
+            length -= 1;
+        } else {
+            length -= 1;
+            Node<T> current = head;
+            Node<T> prev = null;
+            int count = 0;
+            
+            while (current != null & count < indx) {
+                prev = current;
+                current = current.getNext();
+                count += 1;
+            }
+
+            if (current != null) {
+                prev.setNext(current.getNext());
+            }
+        }  
     }
 
     public T get(int indx) throws Exception {
-        if (indx >= size) {
+        if (indx >= length){
             throw new Exception("Index out of bound");
         }
-        for (int i = 0; i <= indx; i++) {
-            // implement
+
+        Node<T> current = head;
+        int count = 0;
+
+        while (current != null && count < indx) {
+            current = current.getNext();
+            count += 1;
         }
-        return null;
+
+        return current.getValue();
     }
 
     @Override
-    public T getLength() {
-        // Use decorator for getter and rename internal attribute to track size
+    public void insert(T value, int indx) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getLength'");
+        throw new UnsupportedOperationException("Unimplemented method 'insert'");
     }
 }
