@@ -36,12 +36,12 @@ public class StandardLinkedList<T> implements LLinkedList<T> {
         }
     }
 
-    public void remove(int indx) {
+    public void remove(int indx) throws Exception {
         // head-indx0 -> n1-indx1 -> n2-indx2 -> ...
         // after remove indx1
         // // head-indx0 -> n2-indx1 -> ...
         if (indx > length) {
-            return;
+            throw new Exception("Index out of bound.");
         } else if (indx == 0) {
             head = head.getNext();
             length -= 1;
@@ -64,20 +64,9 @@ public class StandardLinkedList<T> implements LLinkedList<T> {
     }
 
     public T get(int indx) throws Exception {
-<<<<<<< HEAD
         if (indx >= length){
             throw new Exception("Index out of bound");
         }
-=======
-        if (indx >= size) {
-            throw new Exception("Index out of bound");
-        }
-        for (int i = 0; i <= indx; i++) {
-            // implement
-        }
-        return null;
-    }
->>>>>>> 886101cadba35e922b82f96f38a23c3006b8fbde
 
         Node<T> current = head;
         int count = 0;
@@ -88,5 +77,11 @@ public class StandardLinkedList<T> implements LLinkedList<T> {
         }
 
         return current.getValue();
+    }
+
+    @Override
+    public void insert(T value, int indx) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'insert'");
     }
 }

@@ -4,7 +4,7 @@ I am not an expert in Java, and would like to dedicate this repo to recreate Com
   - BindirectionalNodes // @ Julio 
  - Queues
     - PriorityQueue
- - LinkedLists // @ Gera 
+ - LinkedLists // @ Gera xx
     - DoubleLinkedList
  - Binary Trees
     - Binary Search Tree

@@ -6,33 +6,51 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 
 public class StandardLinkedListTest {
-    static LLinkedList list;
+    LLinkedList list;
 
 
-<<<<<<< HEAD
-    @BeforeAll
-    static void setup() {
+    @BeforeEach
+    void setup() {
         list = new StandardLinkedList<>();
+        
+    }
+
+    @Test
+    void addTest() throws Exception {
+        assertDoesNotThrow(() -> list.add(0));
+        assertEquals(list.get(0), 0);
+
+        list.add(1);
+        assertEquals(list.get(1), 1);
+        assertEquals(list.get(0), 0);
+
+
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        assertEquals(list.getLength(), 6);
+    }
+
+    @Test
+    void removeAndGetTest() throws Exception {
+        list.add(0);
         list.add(1);
         list.add(2);
         list.add(3);
         list.add(4);
         list.add(5);
-=======
-    @BeforeEach
-    void setup() {
->>>>>>> 886101cadba35e922b82f96f38a23c3006b8fbde
-    }
 
-    @Test
-    void addTest() {
-    }
+        assertDoesNotThrow(() -> list.remove(3));
+        assertDoesNotThrow(() -> list.remove(4));
+        assertDoesNotThrow(() -> list.remove(0));
+        assertDoesNotThrow(() -> list.remove(3));
 
-    @Test
-    void removeTest() {
-    }
+        assertThrows(Exception.class, () -> list.remove(3));
 
-    @Test
-    void getTest() {
+        assertEquals(list.get(0), 1);
+        assertEquals(list.get(1), 2);
+
+        assertEquals(list.getLength(), 2);
     }
 }
