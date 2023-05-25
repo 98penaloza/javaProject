@@ -3,16 +3,16 @@ package com.project.node;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
 public class StandardNodeTest {
-    static Node node1;
-    static Node node2;
-    static Node node3;
-    static Node node4;
+    static Node<Object> node1;
+    static Node<Object> node2;
+    static Node<Object> node3;
+    static Node<Object> node4;
 
-    @BeforeAll
-    static void setup() {
+    @BeforeEach
+    void setup() {
         node1 = StandardNode.builder().value(1).next(null).build();
         node2 = StandardNode.builder().value(2).next(node1).build();
         node3 = StandardNode.builder().value(3).next(node2).build();

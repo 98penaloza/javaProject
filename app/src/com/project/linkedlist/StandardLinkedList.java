@@ -64,9 +64,20 @@ public class StandardLinkedList<T> implements LLinkedList<T> {
     }
 
     public T get(int indx) throws Exception {
+<<<<<<< HEAD
         if (indx >= length){
             throw new Exception("Index out of bound");
         }
+=======
+        if (indx >= size) {
+            throw new Exception("Index out of bound");
+        }
+        for (int i = 0; i <= indx; i++) {
+            // implement
+        }
+        return null;
+    }
+>>>>>>> 886101cadba35e922b82f96f38a23c3006b8fbde
 
         Node<T> current = head;
         int count = 0;
