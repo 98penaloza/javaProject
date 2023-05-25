@@ -5,7 +5,7 @@ import com.project.node.StandardNode;
 
 import lombok.Getter;
 
-public class StandardLinkedList<T> implements LLinkedList<T> {
+public class StandardLinkedList<T> implements LinkedList<T> {
 
     private Node<T> head = null;
 

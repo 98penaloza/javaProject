@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 
 public class StandardLinkedListTest {
-    LLinkedList list;
+    LinkedList<Integer> list;
 
 
     @BeforeEach
