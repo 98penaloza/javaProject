@@ -3,10 +3,10 @@ package com.project;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class AppTest {
+class PlaygroundTest {
     @Test
     void appHasAGreeting() {
-        App classUnderTest = new App();
+        Playground classUnderTest = new Playground();
         assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
     }
 }
