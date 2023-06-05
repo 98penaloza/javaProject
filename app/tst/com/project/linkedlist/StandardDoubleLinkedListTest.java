@@ -66,4 +66,22 @@ public class StandardDoubleLinkedListTest {
         assertThrows(Exception.class, () -> list.remove(22));
         assertThrows(Exception.class, () -> list.remove(-22));
     }
+
+    @Test
+    void InsertAndGetTest() throws Exception {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        list.add(6);
+        list.add(7);
+        assertDoesNotThrow(() -> list.insert(1, 0));
+        assertEquals(1, list.get(1));
+
+        assertDoesNotThrow(() -> list.insert(1, 2));
+        assertEquals(1, list.get(1));
+        assertEquals(1, list.get(2));
+        assertEquals(2, list.get(3));
+    }
 }

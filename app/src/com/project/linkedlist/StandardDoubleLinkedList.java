@@ -77,9 +77,63 @@ public class StandardDoubleLinkedList<T> implements LinkedList<T> {
     }
 
     @Override
-    public void insert(T value, int indx) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insert'");
+    public void insert(T value, int indx) throws Exception {
+        BidirectionalNode<T> newNode = new StandardBidirectionalNode<>(value);
+        if (indx > length) {
+            throw new Exception("Index out of bound.");
+        } else if (indx == 0) {
+            newNode.setNext(head);
+            head = newNode;
+            head.setPrev(null);
+            length += 1; 
+        } else if (indx + 1 == length) {
+            newNode.setPrev(tail);
+            tail = newNode;
+            tail.setNext(null);
+            length += 1;
+        } else {
+            if ( length / 2 >= indx) {
+                int count = 0;
+                BidirectionalNode<T> current = head;
+                BidirectionalNode<T> prev = null;
+                BidirectionalNode<T> new_next = null;
+
+                while (current != null & count < indx) {
+                    prev = current;
+                    current = (BidirectionalNode<T>) current.getNext();
+                    count += 1;
+                }
+                
+                if (current != null) {
+                    // XD
+                    prev.setNext(newNode);
+                    newNode.setPrev(prev);
+                    current.setPrev(newNode);
+                    newNode.setNext(current);
+                }
+                
+                length -= 1;
+            } else {
+                int count = length;
+                BidirectionalNode<T> current = tail;
+                BidirectionalNode<T> next = null;
+                BidirectionalNode<T> new_prev = null;
+
+                while (current != null & count > indx + 1) {
+                    next = current;
+                    current = (BidirectionalNode<T>) current.getPrev();
+                    count -= 1;
+                }
+                
+                if (current != null) {
+                    new_prev = (BidirectionalNode<T>) current.getPrev();
+                    new_prev.setNext(new_prev);
+                    next.setPrev(new_prev);
+                }
+
+                length -= 1;
+            }
+        }     
     }
 
     @Override
