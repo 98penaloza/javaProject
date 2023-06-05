@@ -19,9 +19,10 @@ public class StandardDoubleLinkedList<T> implements LinkedList<T> {
 
     @Override
     public void add(T value) {
-        
+
         BidirectionalNode<T> newNode = new StandardBidirectionalNode<>(value);
         if (head == null) {
+            // set new tail, head = tail if length == 1
             head = newNode;
             length = 1;
         } else {
@@ -29,12 +30,16 @@ public class StandardDoubleLinkedList<T> implements LinkedList<T> {
             BidirectionalNode<T> current = head;
             BidirectionalNode<T> prev = null;
 
-            // go through all of em
+            // > go through all of em
+            // no need of this anymore is it?
+            // you have tail already, you can simply
+            // tail.next = newNode /// use current tail
+            // tail = tail.next /// reset tail
             while (current.getNext() != null) {
                 prev = current;
                 current = (BidirectionalNode<T>) current.getNext();
             }
-            
+
             current.setNext(newNode);
             newNode.setPrev(current);
             tail = newNode;
@@ -48,27 +53,28 @@ public class StandardDoubleLinkedList<T> implements LinkedList<T> {
         if (indx >= length) {
             throw new Exception("Index out of bound");
         } else {
-            
             int count;
 
             // decide where to start indexing (beginning/end)
             if (length / 2 >= indx) {
                 BidirectionalNode<T> current = head;
                 count = 0;
-                
+
                 while (current != null && count < indx) {
                     current = (BidirectionalNode<T>) current.getNext();
                     count += 1;
                 }
-                
+
                 return current.getValue();
             } else {
                 BidirectionalNode<T> current = tail;
-                count = length;
-                
+                // count should start at 0, otherwise change name of var as it can be
+                // missleading
+                count = length; // count = 0
+                // (current != null && length - indx - 1 > count)
                 while (current != null && count > indx + 1) {
                     current = (BidirectionalNode<T>) current.getPrev();
-                    count -= 1;
+                    count -= 1; // count ++
                 }
 
                 return current.getValue();
@@ -144,16 +150,16 @@ public class StandardDoubleLinkedList<T> implements LinkedList<T> {
         // // head-indx0 -> n2-indx1 -> ...
         if (indx > length) {
             throw new Exception("Index out of bound.");
-        } else if (indx == 0) {
+        } else if (indx == 0) { // case could be covered in the lines 109-150 as well
             head = (BidirectionalNode<T>) head.getNext();
             head.setPrev(null);
-            length -= 1; 
-        } else if (indx + 1 == length) {
+            length -= 1;
+        } else if (indx + 1 == length) { // similarly, case can be covered in the following blocks of code
             tail = (BidirectionalNode<T>) tail.getPrev();
             tail.setNext(null);
             length -= 1;
-        } else {
-            if ( length / 2 >= indx) {
+        } else { // de-nest this, no need for else{}, you can do an early return
+            if (length / 2 >= indx) {
                 int count = 0;
                 BidirectionalNode<T> current = head;
                 BidirectionalNode<T> prev = null;
@@ -164,13 +170,13 @@ public class StandardDoubleLinkedList<T> implements LinkedList<T> {
                     current = (BidirectionalNode<T>) current.getNext();
                     count += 1;
                 }
-                
+
                 if (current != null) {
                     new_next = (BidirectionalNode<T>) current.getNext();
                     new_next.setPrev(prev);
                     prev.setNext(new_next);
                 }
-                
+
                 length -= 1;
             } else {
                 int count = length;
@@ -183,7 +189,7 @@ public class StandardDoubleLinkedList<T> implements LinkedList<T> {
                     current = (BidirectionalNode<T>) current.getPrev();
                     count -= 1;
                 }
-                
+
                 if (current != null) {
                     new_prev = (BidirectionalNode<T>) current.getPrev();
                     new_prev.setNext(new_prev);
@@ -193,7 +199,7 @@ public class StandardDoubleLinkedList<T> implements LinkedList<T> {
                 length -= 1;
             }
         }
-          
+
     }
 
 }
