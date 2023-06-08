@@ -21,27 +21,15 @@ public class StandardDoubleLinkedList<T> implements LinkedList<T> {
     public void add(T value) {
 
         BidirectionalNode<T> newNode = new StandardBidirectionalNode<>(value);
-        if (head == null) {
+        if (length == 0) {
             // set new tail, head = tail if length == 1
             head = newNode;
+            tail = head;
             length = 1;
         } else {
-            // current node
-            BidirectionalNode<T> current = head;
-            BidirectionalNode<T> prev = null;
 
-            // > go through all of em
-            // no need of this anymore is it?
-            // you have tail already, you can simply
-            // tail.next = newNode /// use current tail
-            // tail = tail.next /// reset tail
-            while (current.getNext() != null) {
-                prev = current;
-                current = (BidirectionalNode<T>) current.getNext();
-            }
-
-            current.setNext(newNode);
-            newNode.setPrev(current);
+            tail.setNext(newNode);
+            newNode.setPrev(tail);
             tail = newNode;
             length += 1;
         }
@@ -53,28 +41,30 @@ public class StandardDoubleLinkedList<T> implements LinkedList<T> {
         if (indx >= length) {
             throw new Exception("Index out of bound");
         } else {
-            int count;
+            int reverse_count;
 
             // decide where to start indexing (beginning/end)
             if (length / 2 >= indx) {
                 BidirectionalNode<T> current = head;
-                count = 0;
+                reverse_count = 0;
 
-                while (current != null && count < indx) {
+                while (current != null && reverse_count < indx) {
                     current = (BidirectionalNode<T>) current.getNext();
-                    count += 1;
+                    reverse_count += 1;
                 }
 
                 return current.getValue();
             } else {
                 BidirectionalNode<T> current = tail;
+
+                // EDIT: running the tests on your suggestion caused them to fail. Decided to just rename the var
                 // count should start at 0, otherwise change name of var as it can be
                 // missleading
-                count = length; // count = 0
+                reverse_count = length; // count = 0
                 // (current != null && length - indx - 1 > count)
-                while (current != null && count > indx + 1) {
+                while (current != null && reverse_count > indx + 1) {
                     current = (BidirectionalNode<T>) current.getPrev();
-                    count -= 1; // count ++
+                    reverse_count -= 1; // count ++
                 }
 
                 return current.getValue();
